@@ -1,0 +1,28 @@
+<td (click)="openModal(restaurant.name)">{{ restaurant.name }}</td>
+<td (click)="openModal(restaurant.name)">{{ restaurant.city }}</td>
+<td (click)="openModal(restaurant.name)">{{ restaurant.postCode }}</td>
+<td (click)="openModal(restaurant.name)">{{ restaurant.address }}</td>
+<td (click)="openModal(restaurant.name)">{{ restaurant.startYear }}</td>
+
+
+
+<jw-modal id={{restaurant.name}} >
+
+    <div id="detailInfo" *ngIf="clicked" >
+        <div> {{restaurant.name}}</div>
+        <div> {{restaurant.address}}</div>
+        <div> {{restaurant.city}}</div>
+        <div> {{restaurant.postCode}}</div>
+
+        <div *ngFor="let m of restaurant.urls">
+            <a href="{{m}}">{{m}}</a>
+        </div>
+
+        <div *ngFor="let m of restaurant.media">
+            <img src="{{m.url}}">
+        </div>
+    </div>
+
+   <!--<app-restaurant-detail></app-restaurant-detail>-->
+    <button (click)="closeModal(restaurant.name);">Close</button>
+</jw-modal>

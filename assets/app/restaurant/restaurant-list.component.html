@@ -1,0 +1,51 @@
+<div class="container">
+
+    Name: <input #textName type="text" [(ngModel)]="inputName" >
+    Post Code: <input #textPostCode type="text" [(ngModel)]="inputPostCode">
+    Year: <input #textYear type="text" [(ngModel)]="inputYear">
+    <br>
+    <br>
+    <button (click)="filter()">Search</button>
+    <button (click)="reset()">Reset</button>
+    <br>
+    <br>
+
+    <ng-multiselect-dropdown
+            [placeholder]="'select city'"
+            [data]="citiesData"
+            [(ngModel)]="selectedItems"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            (onDeSelect)="onDeSelect($event)"
+            (onDeSelectAll)="onDeSelectAll($event)"
+            *ngIf="citiesData.length > 0"
+    >
+    </ng-multiselect-dropdown>
+
+
+
+    <table class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Post code</th>
+            <th>Address</th>
+            <th>Start year</th>
+        </tr>
+        </thead>
+
+        <tbody >
+
+        <tr class="component-style restaurant-component"
+            app-restaurant
+            [restaurant]="restaurant"
+            *ngFor="let restaurant of filteredRestaurants">
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
