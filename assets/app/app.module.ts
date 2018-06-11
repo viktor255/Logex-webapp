@@ -10,6 +10,8 @@ import { ModalComponent } from "./modal/modal.component";
 import { RestaurantDetailComponent } from "./restaurant/restaurant-detail.component";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { FormsModule } from "@angular/forms";
+import { RestaurantMapComponent } from "./restaurant/restaurant-map.component";
+import { AgmCoreModule } from "@agm/core";
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { FormsModule } from "@angular/forms";
         RestaurantListComponent,
         RestaurantsComponent,
         RestaurantDetailComponent,
+        RestaurantMapComponent,
         ModalComponent
     ],
     imports: [
@@ -26,6 +29,11 @@ import { FormsModule } from "@angular/forms";
         HttpClientModule,
         FormsModule,
         NgMultiSelectDropDownModule.forRoot()
+        AgmCoreModule.forRoot({
+            // please get your own API key here:
+            // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+            apiKey: 'AIzaSyBYtwSALkqgGMCbjbw-DPDSCIOR8RtKJA4'
+        })
     ],
     providers:[ModalService],
     bootstrap: [AppComponent]

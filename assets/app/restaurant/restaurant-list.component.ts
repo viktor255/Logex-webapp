@@ -10,12 +10,11 @@ import { ModalService } from "../modal/modal.service";
 export class RestaurantListComponent implements OnInit{
     restaurants: RestaurantModel[] = [];
     filteredRestaurants: RestaurantModel[] = [];
-    filteredNameRestaurants: RestaurantModel[] = [];
-    filteredCityRestaurants: RestaurantModel[] = [];
-
     inputName: string;
     inputPostCode: string;
     inputYear: string;
+
+    showMap: boolean = false;
 
     dropdownList = [];
     cities = [];
@@ -33,6 +32,13 @@ export class RestaurantListComponent implements OnInit{
         this.inputName = '';
         this.inputPostCode = '';
         this.inputYear = '';
+    }
+
+    toggleMap(){
+        this.showMap = true;
+    }
+    toggleTable(){
+        this.showMap = false;
     }
 
     filter(){
@@ -57,9 +63,6 @@ export class RestaurantListComponent implements OnInit{
                     (word.postCode.match(this.inputPostCode) !== null));
         }
     }
-
-
-
 
     cityFilter(){
         this.filteredRestaurants = [];
@@ -133,6 +136,8 @@ export class RestaurantListComponent implements OnInit{
         console.log(this.citiesData);
 
     }
+
+
 
     ngOnInit(){
         // this.restaurants.push(new RestaurantModel(

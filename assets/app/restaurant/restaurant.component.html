@@ -5,24 +5,40 @@
 <td (click)="openModal(restaurant.name)">{{ restaurant.startYear }}</td>
 
 
+<jw-modal id={{restaurant.name}}>
 
-<jw-modal id={{restaurant.name}} >
+    <div id="detailInfo" *ngIf="clicked">
+        <div id="text">
+            <h2> {{restaurant.name}}</h2>
+            <div id="address"> {{restaurant.address}} <br>
+                {{restaurant.city}} <br>
+                {{restaurant.postCode}} <br>
 
-    <div id="detailInfo" *ngIf="clicked" >
-        <div> {{restaurant.name}}</div>
-        <div> {{restaurant.address}}</div>
-        <div> {{restaurant.city}}</div>
-        <div> {{restaurant.postCode}}</div>
-
-        <div *ngFor="let m of restaurant.urls">
-            <a href="{{m}}">{{m}}</a>
+            </div>
+            <div id="url"><a *ngFor="let m of restaurant.urls" href="{{m}}" target="_blank">{{m}}</a></div>
         </div>
 
-        <div *ngFor="let m of restaurant.media">
-            <img src="{{m.url}}">
-        </div>
+        <ul id="imagePrenajomLogo">
+            <li *ngFor="let m of restaurant.media"><img src="{{m.url}}" alt="Restaurant Image"></li>
+        </ul>
+
+
+
+        <agm-map #gm
+                 [latitude]="restaurant.latitude"
+                 [longitude]="restaurant.longitude"
+                 [zoom]=13>
+            <agm-marker
+                    [latitude]="restaurant.latitude"
+                    [longitude]="restaurant.longitude">
+            </agm-marker>
+        </agm-map>
+
+
     </div>
 
-   <!--<app-restaurant-detail></app-restaurant-detail>-->
-    <button (click)="closeModal(restaurant.name);">Close</button>
+    <!--<app-restaurant-detail></app-restaurant-detail>-->
+
+    <div id="button"><button type="button" class="btn" (click)="closeModal(restaurant.name);">Close</button></div>
+    <div style="height: 35px"></div>
 </jw-modal>

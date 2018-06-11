@@ -28,6 +28,8 @@ export class RestaurantService{
                         restaurant.location.zipcode,
                         restaurant.location.adress,
                         restaurant.location,
+                        Number((restaurant.location.latitude).replace(',','.')),
+                        Number((restaurant.location.longitude).replace(',','.')),
                         restaurant.urls,
                         restaurant.media,
                         startYear
