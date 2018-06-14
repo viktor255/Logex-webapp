@@ -64,11 +64,11 @@ export class RestaurantComponent {
         this.clicked = true;
         this.modalService.open(id);
         this.getEvents();
-        console.log('modal open' + id);
+        // console.log('modal open' + id);
     }
 
     closeModal(id){
         this.modalService.close(id);
-        console.log('modal open' + id);
+        // console.log('modal open' + id);
     }
 }

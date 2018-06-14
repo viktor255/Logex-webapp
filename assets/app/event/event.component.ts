@@ -65,12 +65,12 @@ export class EventComponent {
     openModal(id) {
         this.clicked = true;
         this.modalService.open(id);
-        console.log('modal open' + id);
+        // console.log('modal open' + id);
         this.getRestaurants();
     }
 
     closeModal(id) {
         this.modalService.close(id);
-        console.log('modal open' + id);
+        // console.log('modal open' + id);
     }
 }
