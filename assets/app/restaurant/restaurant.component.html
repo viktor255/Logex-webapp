@@ -18,11 +18,9 @@
             <div id="url"><a *ngFor="let m of restaurant.urls" href="{{m}}" target="_blank">{{m}}</a></div>
         </div>
 
-        <ul id="imagePrenajomLogo">
+        <ul id="imagesList">
             <li *ngFor="let m of restaurant.media"><img src="{{m.url}}" alt="Restaurant Image"></li>
         </ul>
-
-
 
         <agm-map #gm
                  [latitude]="restaurant.latitude"
@@ -34,10 +32,14 @@
             </agm-marker>
         </agm-map>
 
+        <div id="texta" *ngIf="!openFromOutside"><p>Events</p></div>
+        <app-event-list
+                *ngIf="!openFromOutside"
+                [filteredEvents]="eventsInArea"
+                [openFromOutside]=true
+        ></app-event-list>
 
     </div>
-
-    <!--<app-restaurant-detail></app-restaurant-detail>-->
 
     <div id="button"><button type="button" class="btn" (click)="closeModal(restaurant.name);">Close</button></div>
     <div style="height: 35px"></div>

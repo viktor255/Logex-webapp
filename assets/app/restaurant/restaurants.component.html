@@ -1,4 +1,42 @@
-<app-restaurant-list></app-restaurant-list>
-<!--<app-restaurant-map></app-restaurant-map>-->
+<div class="container">
+
+    <form class="form-inline">
+        <label for="name" class="mr-sm-2">Name:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="name" [(ngModel)]="inputName" name="inputName"
+               (keyup)="filter()">
+
+        <label for="postCode" class="mr-sm-2">Post code:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="postCode" [(ngModel)]="inputPostCode"
+               name="inputPostCode" (keyup)="filter()">
+
+        <label for="year" class="mr-sm-2">Year:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="year" [(ngModel)]="inputYear" name="inputYear"
+               (keyup)="filter()">
+        <button type="submit" class="btn btn-primary mb-2" (click)="reset()">Reset</button>
+    </form>
+
+    <div class="drop" style="width: 550px; height: 50px">
+        <label for="city" class="mr-sm-2" style="float: left; margin-top: 10px; padding-right: 12px">City:</label>
+        <div style="float: left; width: 450px">
+            <ng-multiselect-dropdown
+                    id="city"
+                    [placeholder]="'select city'"
+                    [data]="citiesData"
+                    [(ngModel)]="selectedItems"
+                    [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                    (onDeSelect)="onDeSelect($event)"
+                    (onDeSelectAll)="onDeSelectAll($event)"
+                    *ngIf="citiesData.length > 0"
+            >
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
+    <br>
+
+    <app-restaurant-list [filteredRestaurants]="filteredRestaurants" ></app-restaurant-list>
+
+</div>
 
 

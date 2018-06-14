@@ -1,0 +1,24 @@
+<div class="container">
+    <table class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Month</th>
+            <th>Start year</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr class="component-style event-component"
+            app-event
+            [event]="event"
+            [openFromOutside] = "openFromOutside"
+            *ngFor="let event of filteredEvents">
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+

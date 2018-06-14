@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
+import { EventService } from "../event/event.service";
 
 
 const urlLink = 'http://localhost:3000/';
@@ -11,7 +12,11 @@ const urlLink = 'http://localhost:3000/';
 export class RestaurantService{
     restaurants: RestaurantModel[] = [];
 
-    constructor(private httpClient: HttpClient){}
+    constructor(private httpClient: HttpClient, private eventService: EventService){}
+
+    getEvents(){
+        return this.eventService.getEvents();
+    }
 
     getRestaurants() {
         return this.httpClient.get<RestaurantModel[]>(urlLink + 'restaurant')
@@ -32,7 +37,8 @@ export class RestaurantService{
                         Number((restaurant.location.longitude).replace(',','.')),
                         restaurant.urls,
                         restaurant.media,
-                        startYear
+                        startYear,
+                        -1
                     );
                 }
                 this.restaurants = transformedRestaurants;

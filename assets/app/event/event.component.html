@@ -1,0 +1,46 @@
+<td (click)="openModal(event.name)">{{ event.name }}</td>
+<td (click)="openModal(event.name)">{{ event.city }}</td>
+<td (click)="openModal(event.name)">{{ event.startMonth }}</td>
+<td (click)="openModal(event.name)">{{ event.startYear }}</td>
+
+
+<jw-modal id={{event.name}}>
+
+    <div id="detailInfo" *ngIf="clicked">
+        <div id="text">
+            <h2> {{event.name}}</h2>
+            <div id="address"> {{event.address}} <br>
+                {{event.city}} <br>
+                {{event.postCode}} <br>
+
+            </div>
+            <div id="url"><a *ngFor="let m of event.urls" href="{{m}}" target="_blank">{{m}}</a></div>
+        </div>
+
+        <ul id="imagesList">
+            <li *ngFor="let m of event.media"><img src="{{m.url}}" alt="Event Image"></li>
+        </ul>
+
+        <agm-map #gm
+                 [latitude]="event.latitude"
+                 [longitude]="event.longitude"
+                 [zoom]=13>
+            <agm-marker
+                    [latitude]="event.latitude"
+                    [longitude]="event.longitude">
+            </agm-marker>
+        </agm-map>
+
+        <div id="texta" *ngIf="!openFromOutside"><p>Restaurants</p></div>
+        <app-restaurant-list
+                *ngIf="!openFromOutside"
+                [openFromOutside]=true
+                [filteredRestaurants]="restaurantsInArea"
+        ></app-restaurant-list>
+
+
+    </div>
+
+    <div id="button"><button type="button" class="btn" (click)="closeModal(event.name);">Close</button></div>
+    <div style="height: 35px"></div>
+</jw-modal>

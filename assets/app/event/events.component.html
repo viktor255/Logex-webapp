@@ -1,0 +1,28 @@
+<div class="container">
+
+    <form class="form-inline">
+        <label for="name" class="mr-sm-2">Name:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="name" [(ngModel)]="inputName" name="inputName"
+               (keyup)="filter()">
+
+        <label for="postCode" class="mr-sm-2">Month:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="postCode" [(ngModel)]="inputMonth"
+               name="inputPostCode" (keyup)="filter()">
+
+        <label for="year" class="mr-sm-2">Year:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" id="year" [(ngModel)]="inputYear" name="inputYear"
+               (keyup)="filter()">
+        <button type="submit" class="btn btn-primary mb-2" (click)="reset()">Reset</button>
+    </form>
+
+
+    <br>
+
+    <app-event-list [filteredEvents]="filteredEvents" ></app-event-list>
+
+
+
+
+</div>
+
+

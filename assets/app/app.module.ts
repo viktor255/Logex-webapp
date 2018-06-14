@@ -7,11 +7,13 @@ import { RestaurantListComponent } from "./restaurant/restaurant-list.component"
 import { RestaurantsComponent } from "./restaurant/restaurants.component";
 import { ModalService } from "./modal/modal.service";
 import { ModalComponent } from "./modal/modal.component";
-import { RestaurantDetailComponent } from "./restaurant/restaurant-detail.component";
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { FormsModule } from "@angular/forms";
 import { RestaurantMapComponent } from "./restaurant/restaurant-map.component";
 import { AgmCoreModule } from "@agm/core";
+import { EventComponent } from "./event/event.component";
+import { EventListComponent } from "./event/event-list.component";
+import { EventsComponent } from "./event/events.component";
 
 
 @NgModule({
@@ -20,9 +22,12 @@ import { AgmCoreModule } from "@agm/core";
         RestaurantComponent,
         RestaurantListComponent,
         RestaurantsComponent,
-        RestaurantDetailComponent,
         RestaurantMapComponent,
-        ModalComponent
+        ModalComponent,
+        EventComponent,
+        EventListComponent,
+        EventsComponent
+
     ],
     imports: [
         BrowserModule,

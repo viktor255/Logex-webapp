@@ -21,6 +21,8 @@
   background: white;
   /* margin exposes part of the modal background */
   margin: 40px;
+  border-style: groove;
+
 }
 .jw-modal-background {
   /* modal background fixed across whole screen */

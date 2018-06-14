@@ -1,22 +1,23 @@
 import { Component, Input } from "@angular/core";
-import { RestaurantModel } from "./restaurant.model";
-import { RestaurantService } from "./restaurant.service";
+import { EventModel } from "./event.model";
 import { ModalService } from "../modal/modal.service";
-import { EventModel } from "../event/event.model";
+import { EventService } from "./event.service";
+import { RestaurantModel } from "../restaurant/restaurant.model";
 
 @Component({
-    selector: '[app-restaurant]',
-    templateUrl: './restaurant.component.html',
-    styleUrls: ['./restaurant.component.css'],
+    selector: '[app-event]',
+    templateUrl: './event.component.html',
+    styleUrls: ['./event.component.css'],
 
 })
-export class RestaurantComponent {
-    @Input() restaurant: RestaurantModel;
+export class EventComponent {
+    @Input() event: EventModel;
     @Input() openFromOutside: boolean = false;
     clicked = false;
-    eventsInArea: EventModel[] = [];
+    restaurantsInArea: RestaurantModel[] = [];
 
-    constructor(private restaurantService: RestaurantService, private modalService: ModalService){
+    constructor(private eventService: EventService, private modalService: ModalService) {
+
     }
 
     haversineDistance(latA,lngA, latB, lngB) {
@@ -34,40 +35,41 @@ export class RestaurantComponent {
         // console.log('Haversine dis: ' + R*c);
         return R * c;
     }
-
-    sortEvents(){
-        this.eventsInArea.sort((a,b) => {
+    
+    sortRestaurants(){
+        this.restaurantsInArea.sort((a,b) => {
             if(a.distance <= b.distance)
                 return -1;
             else return 1;
         });
     }
 
-    getEvents() {
-        this.restaurantService.getEvents()
-            .subscribe((events: EventModel[]) => {
-                this.eventsInArea = [];
-                for(let event of events){
-                    const haverDist = this.haversineDistance(event.latitude, event.longitude, this.restaurant.latitude, this.restaurant.longitude);
+    getRestaurants() {
+        this.eventService.getRestaurants()
+            .subscribe((restaurants: RestaurantModel[]) => {
+                this.restaurantsInArea = [];
+                for(let res of restaurants){
+                    const haverDist = this.haversineDistance(res.latitude, res.longitude, this.event.latitude, this.event.longitude);
                     if( haverDist <= 0.5) {
-                        event.distance = haverDist;
-                        this.eventsInArea.push(event);
+                        res.distance = haverDist;
+                        this.restaurantsInArea.push(res);
                     }
                 }
-                this.sortEvents();
+                this.sortRestaurants();
                 // console.log('Restaurants in area ');
-                // console.log(this.eventsInArea);
+                // console.log(this.restaurantsInArea);
             });
+
     }
 
-    openModal(id){
+    openModal(id) {
         this.clicked = true;
         this.modalService.open(id);
-        this.getEvents();
         console.log('modal open' + id);
+        this.getRestaurants();
     }
 
-    closeModal(id){
+    closeModal(id) {
         this.modalService.close(id);
         console.log('modal open' + id);
     }

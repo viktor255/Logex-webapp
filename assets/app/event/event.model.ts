@@ -1,4 +1,4 @@
-export class RestaurantModel {
+export class EventModel {
     constructor (public name: string,
                  public city: string,
                  public postCode: string,
@@ -8,7 +8,8 @@ export class RestaurantModel {
                  public longitude: number,
                  public urls: object,
                  public media: object,
-                 public startYear: string,
+                 public startYear: number,
+                 public startMonth: number,
                  public distance: number
                  ){}
 }
