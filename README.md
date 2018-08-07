@@ -40,7 +40,7 @@ Load also "Events in Amsterdam" data set (https://data.amsterdam.nl/dataset/even
 
 Technical requirements
  - The application should work in a modern browser. 
- - You can use any JavaScript libraries and CSS frameworks that you like, though we recommend using AngularJS and Bootstrap. For our projects we use AngularJS 1.x, Lodash 3 and our own CSS framework.
+ - You can use any JavaScript libraries and CSS frameworks that you like, though we recommend using Angular and Bootstrap.
  - For server-side you could use NodeJS with "http-server" or similar package.
 
 Deliverables
